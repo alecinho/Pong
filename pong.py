@@ -1,14 +1,20 @@
 import turtle
 import os
 
+# Das erstellen des Feldes des namens und der höhe und breite 
+
 wn = turtle.Screen()
 wn.title("Elio isch behindert")
 wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
+# Erstellen der Variablen für die Scores
+
 score_a = 0
 score_b = 0
+
+# Erstellen der Schläger des Linken Spielers
 
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)
@@ -18,6 +24,8 @@ paddle_a.shapesize(stretch_wid=5,stretch_len=1)
 paddle_a.penup()
 paddle_a.goto(-350, 0)
 
+# Erstellen der Schläger des Rechten Spielers
+
 paddle_b = turtle.Turtle()
 paddle_b.speed(0)
 paddle_b.shape("square")
@@ -25,6 +33,8 @@ paddle_b.color("white")
 paddle_b.shapesize(stretch_wid=5,stretch_len=1)
 paddle_b.penup()
 paddle_b.goto(350, 0)
+
+# Erstellen des Balles welcher auf dem screen rumfliegt
 
 ball = turtle.Turtle()
 ball.speed(200)
@@ -35,6 +45,8 @@ ball.goto(0, 0)
 ball.dx = 4
 ball.dy = 4
 
+# Erstellen des Scoreboardes
+
 pen = turtle.Turtle()
 pen.speed(0)
 pen.shape("square")
@@ -43,6 +55,8 @@ pen.penup()
 pen.hideturtle()
 pen.goto(0, 260)
 pen.write("Alec: 0  Arjun: 0", align="center", font=("Courier", 24, "normal"))
+
+# Alle Variablen zur bewegung der Schläger
 
 def paddle_a_up():
     y = paddle_a.ycor()
@@ -64,6 +78,8 @@ def paddle_b_down():
     y -= 40
     paddle_b.sety(y)
 
+# Die Tasten zum spielen des Spieles
+
 wn.listen()
 wn.onkeypress(paddle_a_up, "w")
 wn.onkeypress(paddle_a_down, "s")
@@ -71,6 +87,8 @@ wn.onkeypress(paddle_b_up, "Up")
 wn.onkeypress(paddle_b_down, "Down")
 
 template = False
+
+# Eigentlicher Start des Spieles mit der While schlaufe
 
 while not template:
     counter = 1
@@ -83,7 +101,7 @@ while not template:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
-        os.system("afplay click.mp3&")
+        os.system("afplay click.mp3&") # Das abspielen des soundes (welches nicht über github funktioniert da man keine audiodateien ablegen kann)
         ball.dx += 2
         ball.dy += 2
         counter + 1
